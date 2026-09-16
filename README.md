@@ -47,7 +47,7 @@ Unitree G1 + Livox MID360 的 ROS 2 建图与导航工作空间快照。当前�
 ## 获取与编译
 
 ```bash
-git clone https://github.com/EddiePEET/unitree-g1-fastlio.git
+git clone https://github.com/ZhenyuYangK/unitree-g1-fastlio.git
 cd unitree-g1-fastlio
 ./script/restore_vendor_libraries.sh
 
