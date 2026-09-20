@@ -106,9 +106,6 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ./script/g1_navigation.sh logs
 ./script/g1_navigation.sh stop
 ```
-运行截图：
-![Uploading 截图 2026-09-20 15-25-19.png…]()
-
 关键接口：
 
 - 全局坐标系：`map`
@@ -133,6 +130,9 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ```
 
 `start` 仅启动真实桥并保持安全门关闭；`enable` 才允许 Nav2 命令进入真实机器人后端。
+
+运行截图：
+<img width="1562" height="857" alt="截图 2026-09-20 15-25-19" src="https://github.com/user-attachments/assets/4dba04f2-d4e9-4c2f-b56a-b40f8c8f0dfa" />
 
 ## 配置说明
 
