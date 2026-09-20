@@ -77,6 +77,8 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ./script/g1_mapping.sh save
 ./script/g1_mapping.sh finish
 ```
+运行截图：
+<img width="2468" height="1322" alt="截图 2026-09-20 15-37-42" src="https://github.com/user-attachments/assets/7c641cc5-257c-4467-8006-543a2e9ebd2a" />
 
 常用辅助命令：
 
@@ -86,7 +88,7 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ./script/g1_mapping.sh stop
 ```
 
-建图脚本会在 `runtime/mapping/` 生成日志、PID、会话信息和临时配置；这些文件不进入 Git。
+建图脚本会在 `runtime/mapping/` 生成日志、PID、会话信息和临时配置；
 
 ## 定位与 Nav2
 
@@ -104,6 +106,8 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ./script/g1_navigation.sh logs
 ./script/g1_navigation.sh stop
 ```
+运行截图：
+![Uploading 截图 2026-09-20 15-25-19.png…]()
 
 关键接口：
 
