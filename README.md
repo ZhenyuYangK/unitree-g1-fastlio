@@ -168,6 +168,7 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ## 正在解决
 - 导航点的记录
 - 避障优化
+- 路径规划优化
 - 语义地图制作
 - 语音语义识别
 - 用户交互页面
