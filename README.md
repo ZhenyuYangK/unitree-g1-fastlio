@@ -179,6 +179,4 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 - 用户交互页面
 - NDT定位结合视觉回环优化
 - 具体导航点的语音动作编辑
-- 基于2D地图可视化巡路编辑
-- 特定动作训练
 - 3D导航(待定)
