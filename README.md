@@ -79,6 +79,10 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ```
 运行截图：
 <img width="2468" height="1322" alt="截图 2026-09-20 15-37-42" src="https://github.com/user-attachments/assets/7c641cc5-257c-4467-8006-543a2e9ebd2a" />
+大范围建图PCD地图示例：
+
+
+
 
 常用辅助命令：
 
