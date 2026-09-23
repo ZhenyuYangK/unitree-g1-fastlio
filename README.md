@@ -95,8 +95,11 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ## 地图转换
 
 FAST-LIO 建图保存的是三维点云地图（`.pcd`），而 Nav2的代价地图只接受二维栅格地图（`.pgm` 图片 + `.yaml`描述文件）
+
 此转换脚本做的事是：**估计地面平面 → 按离地高度保留障碍层（去掉地面和天花板）→ 投影到 XY 平面 → 半径滤波去噪 → 栅格化输出 PGM + YAML**
+
 PS：本脚本在室内实验室环境下验证可行，室外环境或者3D导航等需要另外自行更改脚本
+
 基本使用方法：
 ```bash
   cd <maps文件夹所在地址>
