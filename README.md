@@ -79,7 +79,7 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ```
 运行截图：
 <img width="2468" height="1322" alt="截图 2026-09-20 15-37-42" src="https://github.com/user-attachments/assets/7c641cc5-257c-4467-8006-543a2e9ebd2a" />
-大范围建图PCD地图示例：
+大范围建图PCD地图(map文件夹下TB4.pcd)示例：
 <img width="1320" height="910" alt="截图 2026-09-23 20-26-41" src="https://github.com/user-attachments/assets/b920b017-1370-4dbe-a483-06c6b594d13e" />
 
 
@@ -94,6 +94,49 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ```
 
 建图脚本会在 `runtime/mapping/` 生成日志、PID、会话信息和临时配置；
+## 地图转换
+
+FAST-LIO 建图保存的是三维点云地图（`.pcd`），而 Nav2的代价地图只接受二维栅格地图（`.pgm` 图片 + `.yaml`描述文件）
+此转换脚本做的事是：**估计地面平面 → 按离地高度保留障碍层（去掉地面和天花板）→ 投影到 XY 平面 → 半径滤波去噪 → 栅格化输出 PGM + YAML**
+
+基本使用方法：
+```bash
+  cd <maps文件夹所在地址>
+  python3 pcd2pgm_multilayer.py <输入.pcd> --output-prefix <输出前缀>
+```
+### 参数介绍
+
+  | 参数 | 默认值 | 说明 |
+  |---|---|---|
+  | `input_pcd`（位置参数） | — | 输入点云，仅支持 `DATA binary` 格式 |
+  | `--output-prefix` | `map_multilayer` | 输出文件名前缀 |
+  | `--plane-a` / `--plane-b` / `--plane-c` | -0.06203 / -0.02687 / -1.51000 |
+  地面平面 z = a·x + b·y + c；**默认值按 map.pcd 拟合，换地图必须重设** |
+  | `--xmin` `--xmax` `--ymin` `--ymax` | -6.5 / 23.5 / -20.0 / 28.5 |
+  地图边界（米）；**默认值按 map.pcd 设定，换地图必须重设** |
+  | `--resolution` | 0.05 | 栅格分辨率（米/格）；大范围地图建议 0.1 |
+  | `--layers` | `0.20:0.50,0.45:0.80,0.75:1.10,1.05:1.40,1.35:1.75` |
+  相对地面的高度层；低于 0.20 m 视为地面、高于 1.75 m 视为天花板，均不参与投影 |
+  | `--radius` | 0.15 | 半径滤波半径（米），孤立噪点在此半径内邻居不足而被剔除 |
+  | `--min-neighbors` | 2 | 半径内最少邻居点数（含自身） |
+  | `--min-layers` | 1 | 至少多少个高度层同时出现才判为障碍 |
+  | `--close-radius` | 1 | 闭运算半径（格），填补墙线小缺口 |
+  | `--dilate-radius` | 1 | 膨胀半径（格），让墙线更连续 |
+
+### 接入 Nav2
+
+`script/g1_navigation.sh` 默认加载 
+`maps/map_multilayer.pgm|yaml`，
+两种方式切换：
+```bash
+# 方式一：直接用默认文件名生成，零配置
+python3 pcd2pgm_multilayer.py TB4.pcd --output-prefix map_multilayer ...
+
+# 方式二：保留自定义前缀，启动前用环境变量覆盖
+export G1_MAP_PGM="$PWD/maps/TB4.pgm" G1_MAP_YAML="$PWD/maps/TB4.yaml"
+./script/g1_navigation.sh start
+```
+
 
 ## 定位与 Nav2
 
