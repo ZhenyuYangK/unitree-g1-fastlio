@@ -2,7 +2,6 @@
 
 Unitree G1 + Livox MID360 的 ROS 2 建图与导航工作空间快照。当前仓库版本为 **v8.7**，包含 Livox 驱动、FAST-LIO、NDT 重定位、Nav2 规划、安全速度桥、地图和运行脚本。
 
-本项目主要为了解决官方slam项目地图无法在PC2上保存完成后续任务以及建图范围过小的问题
 
 > 安全提示：真实机器人运动存在碰撞和人身伤害风险。请先完成仿真或 Dry Run 验证，并确保遥控器、急停和安全人员到位。`g1_navigation.sh` 不会直接启用真实运动；真实桥还需要单独运行 `g1_navigation_real.sh` 并显式执行 `enable`。
 
@@ -216,6 +215,7 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 - 真实导航必须在目标机器人、雷达、DDS 网络和安全条件齐备后重新验证。
 ## 正在解决
 - 导航点的记录
+- 开机自动定位
 - 避障优化
 - 路径规划优化
 - 语义地图制作
