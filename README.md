@@ -1,6 +1,6 @@
 # 基于宇树G1EDU+ 29DO迎宾讲解项目(包含 建图、手动导航、语音交互导航和定点语音讲解）
 
-Unitree G1 + Livox MID360 的 ROS 2 建图与导航工作空间快照。当前仓库版本为 **v8.7**，包含 Livox 驱动、FAST-LIO、NDT 重定位、Nav2 规划、安全速度桥、地图和运行脚本。
+Unitree G1 的 ROS 2 建图与导航迎宾讲解项目。当前仓库版本为 **v8.7**，包含 Livox 驱动、FAST-LIO、NDT 重定位、Nav2 规划、安全速度桥、地图和运行脚本。
 
 
 > 安全提示：真实机器人运动存在碰撞和人身伤害风险。请先完成仿真或 Dry Run 验证，并确保遥控器、急停和安全人员到位。`g1_navigation.sh` 不会直接启用真实运动；真实桥还需要单独运行 `g1_navigation_real.sh` 并显式执行 `enable`。
@@ -85,6 +85,7 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 ```
 
 建图脚本会在 `runtime/mapping/` 生成日志、PID、会话信息和临时配置；
+
 运行截图：
 <img width="2468" height="1322" alt="截图 2026-09-20 15-37-42" src="https://github.com/user-attachments/assets/7c641cc5-257c-4467-8006-543a2e9ebd2a" />
 大范围建图PCD地图(map文件夹下TB4.pcd)示例：
@@ -214,13 +215,11 @@ export UNITREE_ROS2_SETUP=/path/to/cyclonedds_ws/install/setup.bash
 - 本次整理环境不是 Ubuntu/ROS 2 主机，未在此环境重新编译或连接实机验收。
 - 真实导航必须在目标机器人、雷达、DDS 网络和安全条件齐备后重新验证。
 ## 正在解决
+- 避障优化
 - 导航点的记录
 - 开机自动定位
-- 避障优化
 - 路径规划优化
-- 语义地图制作
 - 语音语义识别
 - 用户交互页面
-- NDT定位结合视觉回环优化
-- 具体导航点的语音动作编辑
-- 3D导航(待定)
+- 具体导航点任务编辑与实现
+- 导航点语音任务调度
